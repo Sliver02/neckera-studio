@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Button } from "@/components/atoms/Button";
 import { SiX, SiInstagram, SiYoutube, SiGithub } from "react-icons/si";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -18,7 +19,8 @@ const PARALLAX_LAYERS = [
     speed: 0.12,
     zIndex: 1,
     style: {
-      background: "linear-gradient(to bottom, #0a1f0f 0%, #0d3020 40%, #163825 100%)",
+      background:
+        "linear-gradient(to bottom, #0a1f0f 0%, #0d3020 40%, #163825 100%)",
     },
   },
   // Layer 1 — distant hills / treeline (slow)
@@ -32,7 +34,7 @@ const PARALLAX_LAYERS = [
   },
   // Layer 2 — mid forest (medium)
   {
-    speed: 0.50,
+    speed: 0.5,
     zIndex: 3,
     style: {
       background:
@@ -51,10 +53,10 @@ const PARALLAX_LAYERS = [
 ] as const;
 
 const SOCIAL_LINKS = [
-  { icon: SiX,         label: "X / Twitter", href: "#" },
-  { icon: SiInstagram, label: "Instagram",   href: "#" },
-  { icon: SiYoutube,   label: "YouTube",     href: "#" },
-  { icon: SiGithub,    label: "GitHub",      href: "#" },
+  { icon: SiX, label: "X / Twitter", href: "#" },
+  { icon: SiInstagram, label: "Instagram", href: "#" },
+  { icon: SiYoutube, label: "YouTube", href: "#" },
+  { icon: SiGithub, label: "GitHub", href: "#" },
 ] as const;
 
 export default function HeroSection() {
@@ -97,7 +99,7 @@ export default function HeroSection() {
       window.addEventListener("mousemove", handleMouseMove);
       return () => window.removeEventListener("mousemove", handleMouseMove);
     },
-    { scope: container }
+    { scope: container },
   );
 
   return (
@@ -109,7 +111,9 @@ export default function HeroSection() {
       {PARALLAX_LAYERS.map((layer, i) => (
         <div
           key={i}
-          ref={(el) => { layersRef.current[i] = el; }}
+          ref={(el) => {
+            layersRef.current[i] = el;
+          }}
           className="absolute inset-0 will-change-transform pointer-events-none"
           style={{ zIndex: layer.zIndex }}
         >
@@ -123,31 +127,24 @@ export default function HeroSection() {
         style={{
           zIndex: 5,
           background:
-            "radial-gradient(ellipse 60% 40% at 50% 60%, rgba(201,165,90,0.05) 0%, rgba(142,196,160,0.03) 40%, transparent 70%)",
+            "radial-gradient(ellipse 60% 40% at 50% 60%, color-mix(in srgb, var(--color-accent) 5%, transparent) 0%, color-mix(in srgb, var(--color-primary) 3%, transparent) 40%, transparent 70%)",
         }}
       />
 
       {/* Hero Content */}
-      <div className="relative flex flex-col items-center gap-8 text-center px-4" style={{ zIndex: 10 }}>
-        {/* Logo placeholder */}
-        <div className="w-32 h-32 rounded-full border border-[#8ec4a0]/20 bg-black/30 backdrop-blur-sm flex items-center justify-center">
-          <span
-            className="text-[#8ec4a0] text-xs font-bold tracking-[0.3em] uppercase"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            LOGO
-          </span>
-        </div>
-
-        {/* Studio name */}
-        <h1
-          className="text-5xl md:text-7xl lg:text-8xl text-[#e3ded6] tracking-tight leading-none"
-          style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
-        >
-          Neckera
-          <br />
-          <span className="text-[#8ec4a0]">Studio</span>
-        </h1>
+      <div
+        className="relative flex flex-col items-center gap-8 text-center px-4"
+        style={{ zIndex: 10 }}
+      >
+        {/* Logo */}
+        <Image
+          src="/neckera_logo.svg"
+          alt="Neckera Studio"
+          width={420}
+          height={280}
+          priority
+          className="w-72 md:w-96 lg:w-[420px] h-auto"
+        />
 
         {/* Social link-tree */}
         <div className="flex gap-3 mt-2">
@@ -156,7 +153,7 @@ export default function HeroSection() {
               key={label}
               href={href}
               aria-label={label}
-              className="w-11 h-11 rounded-full border border-[#8ec4a0]/15 bg-black/20 backdrop-blur-sm flex items-center justify-center text-[#e3ded6]/60 hover:text-[#8ec4a0] hover:border-[#8ec4a0]/40 hover:bg-[#8ec4a0]/8 transition-all duration-300"
+              className="w-11 h-11 rounded-full border border-accent/15 bg-black/20 backdrop-blur-sm flex items-center justify-center text-foreground/60 hover:text-accent hover:border-accent/40 hover:bg-accent/8 transition-all duration-300"
             >
               <Icon className="w-4 h-4" />
             </a>

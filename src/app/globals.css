@@ -5,91 +5,91 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ─── Design Tokens ─────────────────────────────────────────────
-   Palette derived from Pinterest board:
-   - Deep forest near-black base: #0b1a10 / #0d2015
-   - Mid-forest dark greens: #162a1c / #1e3828
-   - Accent: acid/lime green #c4f135 (neon moss highlight)
-   - Soft teal highlight: #4a9e7a
-   - Off-white text: #e8eddf
-   - Muted body text: #7fa88a
+   Palette derived from Pinterest board (Neckera website):
+   - Light sage green base: #dce8cc / #e8f0d8
+   - Earthy olive greens: #3d4a18 / #4e5a20
+   - Golden mustard accent: #c8a020 (warm gold / army mustard)
+   - Olive-green mid-tones: #c8d8a8 / #b0c888
+   - Dark olive-brown text: #1a1e08
+   - Muted olive body text: #586030
 ──────────────────────────────────────────────────────────────── */
 @theme inline {
-  --color-background:   var(--background);
-  --color-foreground:   var(--foreground);
-  --color-primary:      var(--primary);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary:    var(--secondary);
+  --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted:        var(--muted);
+  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent:       var(--accent);
+  --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-card:         var(--card);
+  --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-  --color-border:       var(--border);
-  --color-input:        var(--input);
-  --color-ring:         var(--ring);
-  --color-destructive:  var(--destructive);
-  --color-popover:      var(--popover);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
 
-  --font-sans:    var(--font-body);
+  --font-sans: var(--font-body);
   --font-display: var(--font-display);
   --font-heading: var(--font-display);
 
-  --radius-sm:  calc(var(--radius) * 0.6);
-  --radius-md:  calc(var(--radius) * 0.8);
-  --radius-lg:  var(--radius);
-  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
 }
 
 :root {
-  --background:             #e8eddf;
-  --foreground:             #0b1a10;
-  --card:                   #ffffff;
-  --card-foreground:        #0b1a10;
-  --popover:                #ffffff;
-  --popover-foreground:     #0b1a10;
-  --primary:                #0d2015;
-  --primary-foreground:     #c4f135;
-  --secondary:              #d4e3c3;
-  --secondary-foreground:   #0b1a10;
-  --muted:                  #d0dccc;
-  --muted-foreground:       #4a6b52;
-  --accent:                 #8ec4a0;
-  --accent-foreground:      #0b1a10;
-  --destructive:            oklch(0.577 0.245 27.325);
-  --border:                 #c2cfc0;
-  --input:                  #c2cfc0;
-  --ring:                   #8ec4a0;
-  --radius:                 0.5rem;
+  --background: #dce8cc;
+  --foreground: #1a1e08;
+  --card: #e8f0d8;
+  --card-foreground: #1a1e08;
+  --popover: #e8f0d8;
+  --popover-foreground: #1a1e08;
+  --primary: #3d4a18;
+  --primary-foreground: #e8f0d8;
+  --secondary: #c8d8a8;
+  --secondary-foreground: #1a1e08;
+  --muted: #d4e0bc;
+  --muted-foreground: #586030;
+  --accent: #c8a020;
+  --accent-foreground: #1a1e08;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #b0c888;
+  --input: #b0c888;
+  --ring: #c8a020;
+  --radius: 0.5rem;
 }
 
 .dark {
-  /* Night forest — deep, breathable, slightly warm */
-  --background:             #06100c;
-  --foreground:             #e3ded6;
-  /* Cards: dim forest interior */
-  --card:                   #0c1a14;
-  --card-foreground:        #e3ded6;
-  --popover:                #0c1a14;
-  --popover-foreground:     #e3ded6;
-  /* Primary: moonlit sage — soft, not neon */
-  --primary:                #8ec4a0;
-  --primary-foreground:     #06100c;
-  /* Secondary: deep moss */
-  --secondary:              #182c21;
-  --secondary-foreground:   #e3ded6;
+  /* Warm night — dark olive-earth, golden amber glow */
+  --background: #101008;
+  --foreground: #f0e8d0;
+  /* Cards: warm dark interior */
+  --card: #101008;
+  --card-foreground: #f0e8d0;
+  --popover: #101008;
+  --popover-foreground: #f0e8d0;
+  /* Primary: warm olive-lime — earthy, not neon */
+  --primary: #96a838;
+  --primary-foreground: #100e08;
+  /* Secondary: deep warm olive */
+  --secondary: #282610;
+  --secondary-foreground: #f0e8d0;
   /* Muted */
-  --muted:                  #101e17;
-  --muted-foreground:       #6b8c78;
-  /* Accent: warm amber, firefly glow */
-  --accent:                 #c9a55a;
-  --accent-foreground:      #06100c;
-  --destructive:            oklch(0.704 0.191 22.216);
-  --border:                 rgba(142 196 160 / 0.10);
-  --input:                  rgba(255 255 255 / 0.06);
-  --ring:                   #8ec4a0;
+  --muted: #201e12;
+  --muted-foreground: #8c8848;
+  /* Accent: golden mustard, warm campfire */
+  --accent: #c89028;
+  --accent-foreground: #100e08;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgba(200 168 32 / 0.12);
+  --input: rgba(255 255 255 / 0.06);
+  --ring: #c89028;
 }
 
 @layer base {
@@ -103,7 +103,12 @@
   body {
     @apply bg-background text-foreground;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display), serif;
   }
 }
