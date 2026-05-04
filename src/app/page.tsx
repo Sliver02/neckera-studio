@@ -38,7 +38,7 @@ export default function Home() {
             title="Faulty loops"
             description="Help the charming Harmony Monks to restore the holy music loops in this unit placement puzzle game!"
             imageUrl="/faulty_loops_thumbnail.jpg"
-            itchUrl="https://neckera.itch.io/faulty-loops"
+            itchUrl="https://msilvestro.itch.io/faulty-loops"
           />
         </div>
       </section>
