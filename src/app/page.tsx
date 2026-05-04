@@ -7,7 +7,7 @@ export default function Home() {
       <HeroSection />
 
       {/* About Section */}
-      <section className="relative z-50 py-32 px-4 max-w-4xl mx-auto text-center border-t border-border">
+      <section className="relative z-50 py-32 px-4 max-w-4xl mx-auto text-center">
         <h2
           className="text-accent text-sm font-semibold uppercase tracking-[0.3em] mb-6"
           style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
@@ -53,9 +53,15 @@ export default function Home() {
             NECKERA STUDIO &copy; 2026
           </div>
           <div className="flex gap-8 text-sm font-medium text-muted-foreground">
-          <a href="#" className="hover:text-accent transition-colors">PRESS KIT</a>
-            <a href="#" className="hover:text-accent transition-colors">CONTACT</a>
-            <a href="#" className="hover:text-accent transition-colors">TERMS</a>
+            <a href="#" className="hover:text-accent transition-colors">
+              PRESS KIT
+            </a>
+            <a href="#" className="hover:text-accent transition-colors">
+              CONTACT
+            </a>
+            <a href="#" className="hover:text-accent transition-colors">
+              TERMS
+            </a>
           </div>
         </div>
       </footer>

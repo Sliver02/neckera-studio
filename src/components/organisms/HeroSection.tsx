@@ -4,52 +4,18 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Button } from "@/components/atoms/Button";
 import { SiX, SiInstagram, SiYoutube, SiGithub } from "react-icons/si";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-// Each layer: background → foreground, increasing scroll speed & darkness
-// These are placeholder CSS layers styled to mimic the Firewatch multi-depth parallax.
-// Replace the `background` style with actual PNGs when assets are ready.
+// background_1 = bottom-most (sky/far bg, moves most) → background_5 = foreground (stays still)
 const PARALLAX_LAYERS = [
-  // Layer 0 — sky / far background (slowest)
-  {
-    speed: 0.12,
-    zIndex: 1,
-    style: {
-      background:
-        "linear-gradient(to bottom, #0a1f0f 0%, #0d3020 40%, #163825 100%)",
-    },
-  },
-  // Layer 1 — distant hills / treeline (slow)
-  {
-    speed: 0.28,
-    zIndex: 2,
-    style: {
-      background:
-        "radial-gradient(ellipse 130% 60% at 50% 100%, #0a2e18 0%, transparent 70%), linear-gradient(to bottom, transparent 50%, #0d2a16 100%)",
-    },
-  },
-  // Layer 2 — mid forest (medium)
-  {
-    speed: 0.5,
-    zIndex: 3,
-    style: {
-      background:
-        "radial-gradient(ellipse 110% 50% at 50% 100%, #071a0d 0%, transparent 65%), linear-gradient(to bottom, transparent 55%, #071508 100%)",
-    },
-  },
-  // Layer 3 — foreground trees silhouette (fastest)
-  {
-    speed: 0.78,
-    zIndex: 4,
-    style: {
-      background:
-        "radial-gradient(ellipse 140% 45% at 50% 108%, #040d07 0%, transparent 55%)",
-    },
-  },
+  { src: "/hero_background/background_1.png", speed: 0.65, zIndex: 1 },
+  { src: "/hero_background/background_2.png", speed: 0.45, zIndex: 2 },
+  { src: "/hero_background/background_3.png", speed: 0.28, zIndex: 3 },
+  { src: "/hero_background/background_4.png", speed: 0.12, zIndex: 4 },
+  { src: "/hero_background/background_5.png", speed: 0,    zIndex: 5 },
 ] as const;
 
 const SOCIAL_LINKS = [
@@ -65,39 +31,29 @@ export default function HeroSection() {
 
   useGSAP(
     () => {
-      // Scroll parallax — each layer moves at its own speed along Y
+      // No pinning — section scrolls normally.
+      // fromTo ensures y:0 at scroll start (section top == viewport top).
+      // Layers drift downward (positive Y) as user scrolls down — background moves most.
+      // Layer 5 speed=0 stays put relative to the section.
       layersRef.current.forEach((layer, i) => {
         if (!layer) return;
-        gsap.to(layer, {
-          y: () => -(window.innerHeight * PARALLAX_LAYERS[i].speed),
-          ease: "none",
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.2, // 1.2s lag = smooth but still responsive
-            invalidateOnRefresh: true,
+        if (PARALLAX_LAYERS[i].speed === 0) return;
+        gsap.fromTo(
+          layer,
+          { y: 0 },
+          {
+            y: () => window.innerHeight * PARALLAX_LAYERS[i].speed,
+            ease: "none",
+            scrollTrigger: {
+              trigger: container.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
           },
-        });
+        );
       });
-
-      // Mouse parallax — horizontal drift only (avoids Y conflict with scroll)
-      const handleMouseMove = (e: MouseEvent) => {
-        const xNorm = (e.clientX / window.innerWidth - 0.5) * 2; // -1 to 1
-        layersRef.current.forEach((layer, i) => {
-          if (!layer) return;
-          const strength = (i + 1) * 6;
-          gsap.to(layer, {
-            x: xNorm * strength,
-            duration: 1.4,
-            ease: "power2.out",
-            overwrite: "auto",
-          });
-        });
-      };
-
-      window.addEventListener("mousemove", handleMouseMove);
-      return () => window.removeEventListener("mousemove", handleMouseMove);
     },
     { scope: container },
   );
@@ -105,7 +61,7 @@ export default function HeroSection() {
   return (
     <section
       ref={container}
-      className="relative h-screen w-full overflow-hidden flex items-center justify-center"
+      className="relative h-screen max-h-[90vh] w-full overflow-hidden flex items-center justify-center"
     >
       {/* Parallax Layers */}
       {PARALLAX_LAYERS.map((layer, i) => (
@@ -117,19 +73,17 @@ export default function HeroSection() {
           className="absolute inset-0 will-change-transform pointer-events-none"
           style={{ zIndex: layer.zIndex }}
         >
-          <div className="w-full h-full" style={layer.style} />
+          <Image
+            src={layer.src}
+            alt=""
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            className="object-cover object-bottom select-none"
+            draggable={false}
+          />
         </div>
       ))}
-
-      {/* Luminous centre glow — forest floor light source */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 5,
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% 60%, color-mix(in srgb, var(--color-accent) 5%, transparent) 0%, color-mix(in srgb, var(--color-primary) 3%, transparent) 40%, transparent 70%)",
-        }}
-      />
 
       {/* Hero Content */}
       <div
@@ -153,22 +107,13 @@ export default function HeroSection() {
               key={label}
               href={href}
               aria-label={label}
-              className="w-11 h-11 rounded-full border border-accent/15 bg-black/20 backdrop-blur-sm flex items-center justify-center text-foreground/60 hover:text-accent hover:border-accent/40 hover:bg-accent/8 transition-all duration-300"
+              className="w-11 h-11 rounded-full border border-white/15 bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 hover:bg-white/10 transition-all duration-300"
             >
               <Icon className="w-4 h-4" />
             </a>
           ))}
         </div>
       </div>
-
-      {/* Bottom fade into page */}
-      <div
-        className="absolute bottom-0 left-0 w-full h-48 pointer-events-none"
-        style={{
-          zIndex: 15,
-          background: "linear-gradient(to top, #06100c 0%, transparent 100%)",
-        }}
-      />
     </section>
   );
 }

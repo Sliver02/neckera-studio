@@ -32,9 +32,7 @@ export default function RootLayout({
       className={`${fraunces.variable} ${lora.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
   );

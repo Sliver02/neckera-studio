@@ -70,13 +70,13 @@
   --background: #101008;
   --foreground: #f0e8d0;
   /* Cards: warm dark interior */
-  --card: #101008;
+  --card: #1f2011;
   --card-foreground: #f0e8d0;
-  --popover: #101008;
+  --popover: #1f2011;
   --popover-foreground: #f0e8d0;
   /* Primary: warm olive-lime — earthy, not neon */
   --primary: #96a838;
-  --primary-foreground: #100e08;
+  --primary-foreground: #1f2011;
   /* Secondary: deep warm olive */
   --secondary: #282610;
   --secondary-foreground: #f0e8d0;
@@ -85,7 +85,7 @@
   --muted-foreground: #8c8848;
   /* Accent: golden mustard, warm campfire */
   --accent: #c89028;
-  --accent-foreground: #100e08;
+  --accent-foreground: #1f2011;
   --destructive: oklch(0.704 0.191 22.216);
   --border: rgba(200 168 32 / 0.12);
   --input: rgba(255 255 255 / 0.06);
