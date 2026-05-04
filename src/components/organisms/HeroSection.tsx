@@ -15,7 +15,7 @@ const PARALLAX_LAYERS = [
   { src: "/hero_background/background_2.png", speed: 0.45, zIndex: 2 },
   { src: "/hero_background/background_3.png", speed: 0.28, zIndex: 3 },
   { src: "/hero_background/background_4.png", speed: 0.12, zIndex: 4 },
-  { src: "/hero_background/background_5.png", speed: 0,    zIndex: 5 },
+  { src: "/hero_background/background_5.png", speed: 0, zIndex: 5 },
 ] as const;
 
 const SOCIAL_LINKS = [
@@ -87,7 +87,7 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <div
-        className="relative flex flex-col items-center gap-8 text-center px-4"
+        className="relative flex flex-col items-center gap-8 text-center px-4 -mt-24"
         style={{ zIndex: 10 }}
       >
         {/* Logo */}
@@ -101,15 +101,15 @@ export default function HeroSection() {
         />
 
         {/* Social link-tree */}
-        <div className="flex gap-3 mt-2">
+        <div className="flex gap-4 mt-2">
           {SOCIAL_LINKS.map(({ icon: Icon, label, href }) => (
             <a
               key={label}
               href={href}
               aria-label={label}
-              className="w-11 h-11 rounded-full border border-white/15 bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 hover:bg-white/10 transition-all duration-300"
+              className="w-14 h-14 rounded-full border border-white/30 bg-black/35 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:border-white/60 hover:bg-white/15 transition-all duration-300"
             >
-              <Icon className="w-4 h-4" />
+              <Icon className="w-6 h-6" />
             </a>
           ))}
         </div>
