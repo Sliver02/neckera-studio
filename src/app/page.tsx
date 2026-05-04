@@ -9,15 +9,34 @@ export default function Home() {
       {/* About Section */}
       <section className="relative z-50 py-32 px-4 max-w-4xl mx-auto text-center">
         <h2
-          className="text-accent text-sm font-semibold uppercase tracking-[0.3em] mb-6"
+          className="text-accent text-md font-semibold uppercase tracking-[0.3em] mb-6"
           style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
         >
           About the Team
         </h2>
-        <p className="text-2xl md:text-3xl font-light text-foreground leading-snug">
-          We are a small independent collective of developers and artists,
-          dedicated to crafting atmospheric and mechanically rich experiences
-          that stick with you long after the credits roll.
+        <p className="text-2xl md:text-2xl font-light text-foreground leading-snug">
+          Neckera Studio is a small indie team of three developers who met
+          through game jams and kept working together!
+          <br />
+          <br />
+          We develop experimental 2D games in Unity, often mixing genres and
+          mechanics to explore unusual ideas while keeping scope tight. Over
+          time, this approach has grown from quick prototypes into more
+          structured projects.
+        </p>
+      </section>
+
+      <section className="relative  px-4 max-w-4xl mx-auto text-center">
+        <h2
+          className="text-accent text-md font-semibold uppercase tracking-[0.3em] mb-6"
+          style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
+        >
+          Why Neckera?
+        </h2>
+        <p className="text-2xl md:text-2xl font-light text-foreground leading-snug">
+          The name comes from Neckera crispa, a type of moss. It reflects how we
+          approach our work: growing steadily, staying grounded, and building
+          things over time rather than rushing them.
         </p>
       </section>
 
