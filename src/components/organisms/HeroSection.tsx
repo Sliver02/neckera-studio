@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { SiX, SiInstagram, SiYoutube, SiGithub } from "react-icons/si";
 import Image from "next/image";
+import { useRef } from "react";
+import { SiInstagram, SiYoutube } from "react-icons/si";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -19,10 +19,10 @@ const PARALLAX_LAYERS = [
 ] as const;
 
 const SOCIAL_LINKS = [
-  { icon: SiX, label: "X / Twitter", href: "#" },
+  // { icon: SiX, label: "X / Twitter", href: "#" },
   { icon: SiInstagram, label: "Instagram", href: "#" },
   { icon: SiYoutube, label: "YouTube", href: "#" },
-  { icon: SiGithub, label: "GitHub", href: "#" },
+  // { icon: SiGithub, label: "GitHub", href: "#" },
 ] as const;
 
 export default function HeroSection() {
@@ -101,7 +101,7 @@ export default function HeroSection() {
           preload
           loading="eager"
           unoptimized
-          className="w-72 md:w-96 lg:w-[420px] h-auto"
+          className="w-72 md:w-96 lg:w-105 h-auto"
         />
 
         {/* Social link-tree */}
