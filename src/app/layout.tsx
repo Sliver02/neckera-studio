@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Lora } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/templates/SmoothScrollProvider";
+import Footer from "@/components/organisms/Footer";
 
 // Display / hero: soft, vintage-organic, high contrast at large sizes
 const fraunces = Fraunces({
@@ -32,7 +33,10 @@ export default function RootLayout({
       className={`${fraunces.variable} ${lora.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          {children}
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );
