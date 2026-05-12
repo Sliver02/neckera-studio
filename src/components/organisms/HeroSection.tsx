@@ -5,8 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useRef } from "react";
-import { FaTiktok } from "react-icons/fa";
-import { SiInstagram, SiYoutube } from "react-icons/si";
+import { SiInstagram, SiItchdotio, SiYoutube } from "react-icons/si";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -21,6 +20,7 @@ const PARALLAX_LAYERS = [
 
 const SOCIAL_LINKS = [
   // { icon: SiX, label: "X / Twitter", href: "#" },
+  { icon: SiItchdotio, label: "Itch.io", href: "https://msilvestro.itch.io/" },
   { icon: SiInstagram, label: "Instagram", href: "#" },
   { icon: SiYoutube, label: "YouTube", href: "#" },
   // { icon: FaTiktok, label: "TikTok", href: "#" },
