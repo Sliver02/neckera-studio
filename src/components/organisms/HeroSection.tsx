@@ -11,11 +11,11 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 // background_1 = bottom-most (sky/far bg, moves most) → background_5 = foreground (stays still)
 const PARALLAX_LAYERS = [
-  { src: "/hero_background/background_1.png", speed: 0.65, zIndex: 1 },
-  { src: "/hero_background/background_2.png", speed: 0.45, zIndex: 2 },
-  { src: "/hero_background/background_3.png", speed: 0.28, zIndex: 3 },
-  { src: "/hero_background/background_4.png", speed: 0.12, zIndex: 4 },
-  { src: "/hero_background/background_5.png", speed: 0, zIndex: 5 },
+  { src: "/hero_background/background_1.webp", speed: 0.65, zIndex: 1 },
+  { src: "/hero_background/background_2.webp", speed: 0.45, zIndex: 2 },
+  { src: "/hero_background/background_3.webp", speed: 0.28, zIndex: 3 },
+  { src: "/hero_background/background_4.webp", speed: 0.12, zIndex: 4 },
+  { src: "/hero_background/background_5.webp", speed: 0, zIndex: 5 },
 ] as const;
 
 const SOCIAL_LINKS = [
@@ -77,8 +77,10 @@ export default function HeroSection() {
             src={layer.src}
             alt=""
             fill
-            priority={i === 0}
+            preload
+            loading="eager"
             sizes="100vw"
+            quality={85}
             className="object-cover object-bottom select-none"
             draggable={false}
           />
@@ -96,7 +98,9 @@ export default function HeroSection() {
           alt="Neckera Studio"
           width={420}
           height={280}
-          priority
+          preload
+          loading="eager"
+          unoptimized
           className="w-72 md:w-96 lg:w-[420px] h-auto"
         />
 
