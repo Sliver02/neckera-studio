@@ -73,12 +73,9 @@ export default function Home() {
           </div>
           <div className="flex gap-8 text-sm font-medium text-muted-foreground">
             <a href="#" className="hover:text-accent transition-colors">
-              PRESS KIT
-            </a>
-            <a href="#" className="hover:text-accent transition-colors">
               CONTACT
             </a>
-            <a href="#" className="hover:text-accent transition-colors">
+            <a href="/terms" className="hover:text-accent transition-colors">
               TERMS
             </a>
           </div>
