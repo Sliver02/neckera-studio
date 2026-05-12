@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useRef } from "react";
+import { FaTiktok } from "react-icons/fa";
 import { SiInstagram, SiYoutube } from "react-icons/si";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -22,7 +23,7 @@ const SOCIAL_LINKS = [
   // { icon: SiX, label: "X / Twitter", href: "#" },
   { icon: SiInstagram, label: "Instagram", href: "#" },
   { icon: SiYoutube, label: "YouTube", href: "#" },
-  // { icon: SiGithub, label: "GitHub", href: "#" },
+  // { icon: FaTiktok, label: "TikTok", href: "#" },
 ] as const;
 
 export default function HeroSection() {
