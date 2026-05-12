@@ -178,7 +178,6 @@ export default function TermsPage() {
           </Section>
         </div>
       </div>
-
     </main>
   );
 }
