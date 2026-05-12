@@ -62,7 +62,7 @@ export default function HeroSection() {
   return (
     <section
       ref={container}
-      className="relative h-screen max-h-[90vh] w-full overflow-hidden flex items-center justify-center"
+      className="relative h-screen max-h-screen w-full overflow-hidden flex items-center justify-center"
     >
       {/* Parallax Layers */}
       {PARALLAX_LAYERS.map((layer, i) => (
