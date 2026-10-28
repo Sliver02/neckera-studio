@@ -4,6 +4,7 @@ import { buttonVariants } from "@/components/atoms/Button";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface GameCardProps {
   title: string;
@@ -12,6 +13,8 @@ interface GameCardProps {
   imageUrl?: string;
   steamUrl?: string;
   itchUrl?: string;
+  pressKitUrl?: string;
+  href?: string;
 }
 
 export default function GameCard({
@@ -21,6 +24,8 @@ export default function GameCard({
   imageUrl,
   steamUrl,
   itchUrl,
+  pressKitUrl,
+  href,
 }: GameCardProps) {
   return (
     <div className="group relative grid md:grid-cols-2 gap-8 items-center bg-card p-6 rounded-2xl border border-border hover:border-accent/30 transition-colors">
@@ -34,10 +39,17 @@ export default function GameCard({
 
       <div className="flex flex-col gap-4">
         <h3 className="text-2xl font-bold text-foreground uppercase tracking-tight">
-          {title}
+          {/* Stretched link: ::after covers the whole card, buttons sit above it */}
+          {href ? (
+            <Link href={href} className="after:absolute after:inset-0">
+              {title}
+            </Link>
+          ) : (
+            title
+          )}
         </h3>
         <p className="text-muted-foreground leading-relaxed">{description}</p>
-        <div className="pt-2 flex flex-wrap gap-3">
+        <div className="relative z-10 pt-2 flex flex-wrap gap-3">
           {steamUrl && (
             <a
               href={steamUrl}
@@ -48,7 +60,7 @@ export default function GameCard({
                 "rounded-full px-6 font-bold bg-foreground text-background hover:bg-foreground/90 inline-flex items-center gap-2",
               )}
             >
-              WISHLIST ON STEAM <ExternalLink className="w-4 h-4" />
+              WISHLIST NOW <ExternalLink className="w-4 h-4" />
             </a>
           )}
           {itchUrl && (
@@ -63,6 +75,17 @@ export default function GameCard({
             >
               PLAY ON ITCH.IO <ExternalLink className="w-4 h-4" />
             </a>
+          )}
+          {pressKitUrl && (
+            <Link
+              href={pressKitUrl}
+              className={cn(
+                buttonVariants({ variant: "outline" }),
+                "rounded-full px-6 font-bold",
+              )}
+            >
+              PRESS KIT
+            </Link>
           )}
         </div>
       </div>

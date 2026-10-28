@@ -55,9 +55,12 @@ export default function Home() {
         <div className="grid gap-12">
           <GameCard
             title="Faulty loops"
-            description="Help the charming Harmony Monks to restore the holy music loops in this unit placement puzzle game!"
+            description="A set-and-play logic puzzle game driven by music. Place your units on the grid, press play and watch the playhead sweep across the board, firing each unit on the beat. Clear every enemy in a single loop to repair the corrupted tapes, one instrument at a time."
             imageUrl="/faulty_loops_thumbnail.jpg"
+            steamUrl="https://store.steampowered.com/app/5359830/Faulty_Loops/"
             itchUrl="https://msilvestro.itch.io/faulty-loops"
+            pressKitUrl="/faulty-loops/presskit"
+            href="/faulty-loops"
           />
         </div>
       </section>
