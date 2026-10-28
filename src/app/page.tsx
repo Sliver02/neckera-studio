@@ -55,7 +55,7 @@ export default function Home() {
         <div className="grid gap-12">
           <GameCard
             title="Faulty loops"
-            description="A set-and-play logic puzzle game driven by music. Place your units on the grid, press play and watch the playhead sweep across the board, firing each unit on the beat. Clear every enemy in a single loop to repair the corrupted tapes, one instrument at a time."
+            description="Faulty Loops is a music-themed setup-and-play puzzle game. Arrange your Harmony Monks on the grid, press play, and watch them spring into action as the playhead triggers them. Destroy every HeretiChord in a single sweep to restore the corrupted tape!"
             imageUrl="/faulty_loops_thumbnail.jpg"
             steamUrl="https://store.steampowered.com/app/5359830/Faulty_Loops/"
             itchUrl="https://msilvestro.itch.io/faulty-loops"
