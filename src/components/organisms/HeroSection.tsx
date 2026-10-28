@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useRef } from "react";
-import { SiInstagram, SiItchdotio, SiYoutube } from "react-icons/si";
+import { SOCIAL_LINKS } from "@/lib/socialLinks";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -16,22 +16,6 @@ const PARALLAX_LAYERS = [
   { src: "/hero_background/background_3.webp", speed: 0.28, zIndex: 3 },
   { src: "/hero_background/background_4.webp", speed: 0.12, zIndex: 4 },
   { src: "/hero_background/background_5.webp", speed: 0, zIndex: 5 },
-] as const;
-
-const SOCIAL_LINKS = [
-  // { icon: SiX, label: "X / Twitter", href: "#" },
-  { icon: SiItchdotio, label: "Itch.io", href: "https://msilvestro.itch.io/" },
-  {
-    icon: SiInstagram,
-    label: "Instagram",
-    href: "https://www.instagram.com/neckerastudio/",
-  },
-  {
-    icon: SiYoutube,
-    label: "YouTube",
-    href: "https://www.youtube.com/channel/UCOxNlvuczco7qpeSlP-vTDA",
-  },
-  // { icon: FaTiktok, label: "TikTok", href: "#" },
 ] as const;
 
 export default function HeroSection() {

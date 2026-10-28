@@ -73,7 +73,7 @@ export default function GameCard({
                 "rounded-full px-6 font-bold bg-foreground text-background hover:bg-foreground/90 inline-flex items-center gap-2",
               )}
             >
-              PLAY ON ITCH.IO <ExternalLink className="w-4 h-4" />
+              DEMO ON ITCH <ExternalLink className="w-4 h-4" />
             </a>
           )}
           {pressKitUrl && (
