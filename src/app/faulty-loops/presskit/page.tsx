@@ -1,6 +1,7 @@
 import SmoothAnchorNav from "@/components/molecules/SmoothAnchorNav";
 import type { Metadata } from "next";
 import { Fredoka } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import { Globe, Mail } from "lucide-react";
 import { SiInstagram, SiItchdotio, SiSteam } from "react-icons/si";
@@ -39,9 +40,16 @@ const features = [
   ["Flexible Controls", "Play with keyboard, gamepad, or mouse."],
 ];
 
-// Add entries as { src: "/faulty_loops/…", label: "…" } once assets are final
-const gifs: { src: string; label: string }[] = [];
-const screenshots: { src: string; label: string }[] = [];
+// WebM loops stand in for GIFs: same motion at a fraction of the size
+const gifs = ["place", "play", "polaroid", "tapes"].map((name) => ({
+  src: `/faulty_loops/presskit/clip_${name}.webm`,
+  label: `Faulty Loops ${name} clip`,
+}));
+// Steam store order, at original upload resolution
+const screenshots = Array.from({ length: 12 }, (_, i) => ({
+  src: `/faulty_loops/presskit/screenshot_${i + 1}.jpg`,
+  label: `Faulty Loops screenshot ${i + 1}`,
+}));
 
 export default function FaultyLoopsPressKitPage() {
   return (
@@ -240,9 +248,28 @@ function MediaList({ items }: { items: { src: string; label: string }[] }) {
     <ul className="grid gap-4 sm:grid-cols-2">
       {items.map((item) => (
         <li key={item.src}>
+          {/* Link serves the full-size file as-is; some screenshots are 8000px, so the preview is resized */}
           <a href={item.src} target="_blank" rel="noopener noreferrer">
-            {/* eslint-disable-next-line @next/next/no-img-element -- full-size press assets, served as-is */}
-            <img src={item.src} alt={item.label} loading="lazy" className="w-full rounded-lg" />
+            {item.src.endsWith(".webm") ? (
+              <video
+                src={item.src}
+                aria-label={item.label}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full rounded-lg"
+              />
+            ) : (
+              <Image
+                src={item.src}
+                alt={item.label}
+                width={1920}
+                height={1080}
+                sizes="(min-width: 1024px) 480px, (min-width: 640px) 50vw, 100vw"
+                className="w-full h-auto rounded-lg"
+              />
+            )}
           </a>
         </li>
       ))}
