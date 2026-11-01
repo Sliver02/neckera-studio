@@ -16,7 +16,7 @@ const fredoka = Fredoka({ subsets: ["latin"] });
 
 const STEAM_URL = "https://store.steampowered.com/app/5359830/Faulty_Loops/";
 const ITCH_URL = "https://msilvestro.itch.io/faulty-loops";
-const TRAILER_ID = "UktBDyxDyEY";
+const TRAILER_ID = "gMQUcin6yfc";
 const PRESS_EMAIL = "press@neckerastudio.com";
 
 // Same pills as /faulty-loops: Steam in logo blue, itch in enemy red
