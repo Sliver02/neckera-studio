@@ -17,7 +17,10 @@ const fredoka = Fredoka({ subsets: ["latin"] });
 
 const STEAM_URL = "https://store.steampowered.com/app/5359830/Faulty_Loops/";
 const ITCH_URL = "https://msilvestro.itch.io/faulty-loops";
-const TRAILER_ID = "gMQUcin6yfc";
+const TRAILERS = [
+  { id: "U_lDqOTNLLk", title: "Gameplay trailer" },
+  { id: "gMQUcin6yfc", title: "Cinematic trailer" },
+];
 const PRESS_EMAIL = "press@neckerastudio.com";
 
 // Same pills as /faulty-loops: Steam in logo blue, itch in enemy red
@@ -181,23 +184,29 @@ export default function FaultyLoopsPressKitPage() {
         </Section>
 
         <Section id="videos" title="Videos">
-          <h3 className="text-2xl font-semibold">Trailer</h3>
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${TRAILER_ID}`}
-            title="Faulty Loops trailer"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            className="mt-3 w-full aspect-video rounded-lg"
-          />
-          <a
-            href={`https://www.youtube.com/watch?v=${TRAILER_ID}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 inline-block text-[#7593f8] hover:underline"
-          >
-            Watch on YouTube
-          </a>
+          <div className="space-y-12">
+            {TRAILERS.map(({ id, title }) => (
+              <div key={id}>
+                <h3 className="text-2xl font-semibold">{title}</h3>
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${id}`}
+                  title={`Faulty Loops ${title.toLowerCase()}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="mt-3 w-full aspect-video rounded-lg"
+                />
+                <a
+                  href={`https://www.youtube.com/watch?v=${id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block text-[#7593f8] hover:underline"
+                >
+                  Watch on YouTube
+                </a>
+              </div>
+            ))}
+          </div>
         </Section>
 
         <Section id="gifs" title="Animated GIFs">

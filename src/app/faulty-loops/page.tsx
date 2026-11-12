@@ -30,7 +30,7 @@ const ENEMY_RED = "#fe5977";
 
 const STEAM_URL = "https://store.steampowered.com/app/5359830/Faulty_Loops/";
 const ITCH_URL = "https://msilvestro.itch.io/faulty-loops";
-const TRAILER_ID = "gMQUcin6yfc";
+const TRAILER_ID = "U_lDqOTNLLk";
 const PRESS_EMAIL = "press@neckerastudio.com";
 
 const SCREENSHOTS = Array.from(
