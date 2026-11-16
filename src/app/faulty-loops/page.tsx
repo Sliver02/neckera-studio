@@ -1,7 +1,7 @@
-import { SOCIAL_LINKS } from "@/lib/socialLinks";
+import LoopVideo from "@/components/molecules/LoopVideo";
+import { ITCH_URL, PRESS_EMAIL, SOCIAL_LINKS, STEAM_URL } from "@/lib/socialLinks";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Fredoka } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, Newspaper } from "lucide-react";
@@ -13,25 +13,9 @@ export const metadata: Metadata = {
     "A set-and-play logic puzzle game driven by music. Wishlist now on Steam.",
 };
 
-// Rounded, chunky sans closer to the game's UI than the site's serifs
-const fredoka = Fredoka({
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
-// Game palette: logo slate + blue, enemy red
-const GAME_COLORS = {
-  "--background": "#272a35",
-  "--foreground": "#ffffff",
-  "--muted-foreground": "#b8bdd6",
-  "--accent": "#7593f8",
-} as React.CSSProperties;
+// Font and palette come from ./layout.tsx; enemy red is the second brand colour
 const ENEMY_RED = "#fe5977";
-
-const STEAM_URL = "https://store.steampowered.com/app/5359830/Faulty_Loops/";
-const ITCH_URL = "https://msilvestro.itch.io/faulty-loops";
 const TRAILER_ID = "U_lDqOTNLLk";
-const PRESS_EMAIL = "press@neckerastudio.com";
 
 const SCREENSHOTS = Array.from(
   { length: 8 },
@@ -39,29 +23,29 @@ const SCREENSHOTS = Array.from(
 );
 
 const pill =
-  "inline-flex items-center gap-3 h-14 px-7 rounded-full text-2xl font-semibold text-white transition-transform hover:-translate-y-0.5";
+  "inline-flex items-center gap-3 h-14 px-7 rounded-full text-2xl font-semibold text-white transition-transform hover:-translate-y-0.5 active:scale-[0.97]";
 
 export default function FaultyLoopsPage() {
   return (
-    <main
-      className={`${fredoka.variable} font-display bg-background text-foreground text-2xl text-center min-h-screen`}
-      style={GAME_COLORS}
-    >
+    <main className="text-2xl text-center min-h-screen">
       {/* Hero: blurred gameplay loop behind the logo, fading into the page */}
       <header className="relative overflow-hidden px-6 pt-16 pb-10">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        <LoopVideo
           aria-hidden
           className="absolute inset-0 w-full h-full object-cover opacity-25 blur-sm scale-110"
         >
           {/* Steam's MP4s are HEVC, so WebM (VP9) goes first for Chrome/Firefox */}
           <source src="/faulty_loops/clip_intro.webm" type="video/webm" />
           <source src="/faulty_loops/clip_intro.mp4" type="video/mp4" />
-        </video>
+        </LoopVideo>
         <div className="absolute inset-0 bg-linear-to-b from-transparent to-background" />
+
+        <Link
+          href="/"
+          className="absolute top-4 left-6 z-10 py-2 text-lg text-foreground/60 hover:text-accent transition-colors"
+        >
+          ← Neckera Studio
+        </Link>
 
         <div className="relative flex flex-col items-center gap-6">
           <h1>
@@ -109,6 +93,7 @@ export default function FaultyLoopsPage() {
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${TRAILER_ID}`}
             title="Faulty Loops trailer"
+            loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
@@ -188,6 +173,7 @@ export default function FaultyLoopsPage() {
               key={src}
               href={src}
               target="_blank"
+              rel="noopener noreferrer"
               className="relative aspect-video overflow-hidden ring-accent hover:ring-4 transition-shadow"
             >
               <Image

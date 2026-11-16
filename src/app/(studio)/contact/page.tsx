@@ -18,14 +18,6 @@ export default function ContactPage() {
 
       <div className="max-w-6xl mx-auto px-6 py-20">
         <div className="max-w-2xl">
-          {/* Intro */}
-          <p
-            className="text-accent text-sm font-semibold uppercase tracking-[0.25em] mb-10"
-            style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
-          >
-            We&apos;d love to hear from you
-          </p>
-
           <ContactForm />
         </div>
       </div>

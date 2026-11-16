@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Fraunces, Lora } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/templates/SmoothScrollProvider";
-import Footer from "@/components/organisms/Footer";
 
 // Display / hero: soft, vintage-organic, high contrast at large sizes
 const fraunces = Fraunces({
@@ -18,6 +17,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
+  // Absolute base for share images (opengraph-image) on every host
+  metadataBase: new URL("https://neckerastudio.com"),
   title: "Neckera Studio | Indie Game Developer",
   description: "Crafting immersive indie game experiences.",
 };
@@ -33,10 +34,8 @@ export default function RootLayout({
       className={`${fraunces.variable} ${lora.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
-        <SmoothScrollProvider>
-          {children}
-          <Footer />
-        </SmoothScrollProvider>
+        {/* Footer lives in each route group's layout so it can take that section's theme */}
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
   );

@@ -22,21 +22,24 @@ export default function PageHeader({ title, description }: PageHeaderProps) {
   useGSAP(
     () => {
       if (!bgRef.current) return;
-      gsap.fromTo(
-        bgRef.current,
-        { y: 0 },
-        {
-          y: () => window.innerHeight * 0.3,
-          ease: "none",
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true,
+      // Parallax only when the visitor hasn't asked for reduced motion
+      gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.fromTo(
+          bgRef.current,
+          { y: 0 },
+          {
+            y: () => window.innerHeight * 0.3,
+            ease: "none",
+            scrollTrigger: {
+              trigger: container.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
           },
-        },
-      );
+        );
+      });
     },
     { scope: container },
   );
@@ -53,15 +56,15 @@ export default function PageHeader({ title, description }: PageHeaderProps) {
           src="/hero_background/background.png"
           alt=""
           fill
-          priority
-          quality={80}
+          preload
+          quality={75}
           sizes="100vw"
           className="object-cover object-top select-none scale-110"
           draggable={false}
         />
       </div>
       {/* Blur + dark overlay for readability */}
-      <div className="absolute inset-0 z-[1] backdrop-blur-sm bg-background/30" />
+      <div className="absolute inset-0 z-1 backdrop-blur-sm bg-background/30" />
 
       {/* Content — pinned to bottom-left */}
       <div className="relative z-10 h-full flex flex-col justify-end max-w-6xl mx-auto w-full px-6 pb-10">

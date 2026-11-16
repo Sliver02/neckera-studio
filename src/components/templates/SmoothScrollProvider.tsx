@@ -9,12 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
+    // Reduced motion keeps native scrolling; ScrollTrigger works without Lenis
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const lenis = new Lenis({
       duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.8,
       touchMultiplier: 1.5,
       // <html> is h-full so its ResizeObserver never fires on page change;
       // read scrollHeight live instead of the cached (stale) limit
