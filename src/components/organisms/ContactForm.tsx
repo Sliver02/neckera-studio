@@ -10,6 +10,7 @@ import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import ContactTemplate, {
   type ContactFormValues,
 } from "@/lib/emailTemplates/ContactTemplate";
+import { CONTACT_EMAIL } from "@/lib/socialLinks";
 import { cn } from "@/lib/utils";
 
 const contactSchema = z.object({
@@ -32,7 +33,13 @@ const inputClass = cn(
   "disabled:opacity-50 disabled:cursor-not-allowed",
 );
 
-const errorClass = "mt-1.5 text-xs text-destructive";
+const errorClass = "mt-1.5 text-sm text-destructive";
+
+// Wires a field to its error so screen readers announce it
+const errorProps = (name: string, hasError: boolean) => ({
+  "aria-invalid": hasError || undefined,
+  "aria-describedby": hasError ? `${name}-error` : undefined,
+});
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
@@ -104,9 +111,14 @@ export default function ContactForm() {
           autoComplete="email"
           className={inputClass}
           disabled={loading}
+          {...errorProps("email", !!errors.email)}
           {...register("email")}
         />
-        {errors.email && <p className={errorClass}>{errors.email.message}</p>}
+        {errors.email && (
+          <p id="email-error" className={errorClass}>
+            {errors.email.message}
+          </p>
+        )}
       </div>
 
       {/* Subject */}
@@ -123,10 +135,13 @@ export default function ContactForm() {
           placeholder="What's this about?"
           className={inputClass}
           disabled={loading}
+          {...errorProps("subject", !!errors.subject)}
           {...register("subject")}
         />
         {errors.subject && (
-          <p className={errorClass}>{errors.subject.message}</p>
+          <p id="subject-error" className={errorClass}>
+            {errors.subject.message}
+          </p>
         )}
       </div>
 
@@ -144,10 +159,13 @@ export default function ContactForm() {
           placeholder="Tell us what's on your mind..."
           className={cn(inputClass, "resize-none")}
           disabled={loading}
+          {...errorProps("message", !!errors.message)}
           {...register("message")}
         />
         {errors.message && (
-          <p className={errorClass}>{errors.message.message}</p>
+          <p id="message-error" className={errorClass}>
+            {errors.message.message}
+          </p>
         )}
       </div>
 
@@ -167,7 +185,19 @@ export default function ContactForm() {
           ) : (
             <AlertCircle className="mt-0.5 size-4 shrink-0" />
           )}
-          {alert.message}
+          <span>
+            {alert.message}
+            {alert.type === "error" && (
+              <>
+                {" "}
+                You can also email us at{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4">
+                  {CONTACT_EMAIL}
+                </a>
+                .
+              </>
+            )}
+          </span>
         </div>
       )}
 
