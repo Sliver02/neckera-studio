@@ -1,5 +1,10 @@
 import { SiInstagram, SiItchdotio, SiYoutube } from "react-icons/si";
 
+export const STEAM_URL = "https://store.steampowered.com/app/5359830/Faulty_Loops/";
+export const ITCH_URL = "https://msilvestro.itch.io/faulty-loops";
+export const PRESS_EMAIL = "press@neckerastudio.com";
+export const CONTACT_EMAIL = "admin@neckerastudio.com";
+
 export const SOCIAL_LINKS = [
   // { icon: SiX, label: "X / Twitter", href: "#" },
   { icon: SiItchdotio, label: "Itch.io", href: "https://msilvestro.itch.io/" },

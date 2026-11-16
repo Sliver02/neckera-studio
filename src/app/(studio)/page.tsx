@@ -1,5 +1,6 @@
 import HeroSection from "@/components/organisms/HeroSection";
 import GameCard from "@/components/molecules/GameCard";
+import { ITCH_URL, STEAM_URL } from "@/lib/socialLinks";
 
 export default function Home() {
   return (
@@ -9,12 +10,12 @@ export default function Home() {
       {/* About Section */}
       <section className="relative z-50 py-32 px-4 max-w-4xl mx-auto text-center">
         <h2
-          className="text-accent text-md font-semibold uppercase tracking-[0.3em] mb-6"
+          className="text-accent text-base font-semibold uppercase tracking-[0.3em] mb-6"
           style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
         >
           About the Team
         </h2>
-        <p className="text-2xl md:text-2xl font-light text-foreground leading-snug">
+        <p className="text-2xl font-light text-foreground leading-snug">
           Neckera Studio is a small indie team of three developers who met
           through game jams and kept working together!
           <br />
@@ -28,12 +29,12 @@ export default function Home() {
 
       <section className="relative  px-4 max-w-4xl mx-auto text-center">
         <h2
-          className="text-accent text-md font-semibold uppercase tracking-[0.3em] mb-6"
+          className="text-accent text-base font-semibold uppercase tracking-[0.3em] mb-6"
           style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
         >
           Why Neckera?
         </h2>
-        <p className="text-2xl md:text-2xl font-light text-foreground leading-snug">
+        <p className="text-2xl font-light text-foreground leading-snug">
           The name comes from Neckera crispa, a type of moss. It reflects how we
           approach our work: growing steadily, staying grounded, and building
           things over time rather than rushing them.
@@ -54,11 +55,11 @@ export default function Home() {
 
         <div className="grid gap-12">
           <GameCard
-            title="Faulty loops"
+            title="Faulty Loops"
             description="Faulty Loops is a music-themed setup-and-play puzzle game. Arrange your Harmony Monks on the grid, press play, and watch them spring into action as the playhead triggers them. Destroy every HeretiChord in a single sweep to restore the corrupted tape!"
-            imageUrl="/faulty_loops_thumbnail.jpg"
-            steamUrl="https://store.steampowered.com/app/5359830/Faulty_Loops/"
-            itchUrl="https://msilvestro.itch.io/faulty-loops"
+            imageUrl="/faulty_loops/screenshot_2.jpg"
+            steamUrl={STEAM_URL}
+            itchUrl={ITCH_URL}
             pressKitUrl="/faulty-loops/presskit"
             href="/faulty-loops"
           />

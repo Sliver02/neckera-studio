@@ -5,7 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useRef } from "react";
-import { SOCIAL_LINKS } from "@/lib/socialLinks";
+import { SiSteam } from "react-icons/si";
+import { SOCIAL_LINKS, STEAM_URL } from "@/lib/socialLinks";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -28,24 +29,27 @@ export default function HeroSection() {
       // fromTo ensures y:0 at scroll start (section top == viewport top).
       // Layers drift downward (positive Y) as user scrolls down — background moves most.
       // Layer 5 speed=0 stays put relative to the section.
-      layersRef.current.forEach((layer, i) => {
-        if (!layer) return;
-        if (PARALLAX_LAYERS[i].speed === 0) return;
-        gsap.fromTo(
-          layer,
-          { y: 0 },
-          {
-            y: () => window.innerHeight * PARALLAX_LAYERS[i].speed,
-            ease: "none",
-            scrollTrigger: {
-              trigger: container.current,
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-              invalidateOnRefresh: true,
+      // Reduced motion: no parallax, the layers rest as one still painting.
+      gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+        layersRef.current.forEach((layer, i) => {
+          if (!layer) return;
+          if (PARALLAX_LAYERS[i].speed === 0) return;
+          gsap.fromTo(
+            layer,
+            { y: 0 },
+            {
+              y: () => window.innerHeight * PARALLAX_LAYERS[i].speed,
+              ease: "none",
+              scrollTrigger: {
+                trigger: container.current,
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
             },
-          },
-        );
+          );
+        });
       });
     },
     { scope: container },
@@ -82,31 +86,49 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <div
-        className="relative flex flex-col items-center gap-8 text-center px-4 -mt-24"
+        className="relative flex flex-col items-center gap-6 text-center px-4 -mt-16"
         style={{ zIndex: 10 }}
       >
-        {/* Logo */}
-        <Image
-          src="/neckera_logo.svg"
-          alt="Neckera Studio"
-          width={420}
-          height={280}
-          preload
-          loading="eager"
-          unoptimized
-          className="w-72 md:w-96 lg:w-105 h-auto"
-        />
+        {/* Logo is the page's h1 (its alt text is the heading) */}
+        <h1>
+          <Image
+            src="/neckera_logo.svg"
+            alt="Neckera Studio"
+            width={420}
+            height={280}
+            preload
+            loading="eager"
+            unoptimized
+            className="w-60 md:w-80 lg:w-96 h-auto"
+          />
+        </h1>
+
+        <p className="max-w-md text-lg md:text-xl leading-snug text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.8)]">
+          Three-person indie studio from Italy, now making Faulty Loops, a
+          puzzle game driven by music.
+        </p>
+
+        <a
+          href={STEAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-12 items-center gap-2 rounded-full bg-accent px-6 font-semibold text-accent-foreground shadow-[0_4px_20px_rgb(0_0_0/0.4)] transition-[filter,scale] duration-200 hover:brightness-110 active:scale-[0.97]"
+        >
+          <SiSteam className="size-5" /> Wishlist Faulty Loops
+        </a>
 
         {/* Social link-tree */}
-        <div className="flex gap-4 mt-2">
+        <div className="flex gap-4">
           {SOCIAL_LINKS.map(({ icon: Icon, label, href }) => (
             <a
               key={label}
               href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
-              className="w-14 h-14 rounded-full border border-white/30 bg-black/35 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:border-white/60 hover:bg-white/15 transition-all duration-300"
+              className="w-12 h-12 rounded-full border border-white/30 bg-black/35 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:border-white/60 hover:bg-white/15 transition-colors duration-200"
             >
-              <Icon className="w-6 h-6" />
+              <Icon className="w-5 h-5" />
             </a>
           ))}
         </div>
